@@ -1,0 +1,175 @@
+%% LLT: Turn off some annoying warnings...
+\RequirePackage{silence}
+\WarningFilter{titlesec}{Non standard sectioning command}
+\WarningFilter{scrreprt}{Usage of package}
+\WarningFilter{scrreprt}{Activating an ugly workaround}
+
+% *********************************************************
+% CHOOSE THEME (ucph, sund, science, hum, samf, jura, teo)
+% *********************************************************
+
+% NOTE: can ONLY RUN UCPH theme with the 2018(legacy) version. Can be changed under Menu
+
+\newcommand{\thesisTheme}{ucph} % to colortheme and titlepage image
+
+
+% *********************************************************
+% DOCUMENT CLASS
+% *********************************************************
+\documentclass[%
+	paper=A4,					% paper size
+	12pt,						% font size
+	twoside=true,				% two-sided printing
+	openright,					% doublepage cleaning ends up right side
+	parskip=full,				% spacing value / method for paragraphs
+	chapterprefix=true,			% prefix for chapter marks
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=on,				% own page for each title page
+	captions=tableabove,		% display table captions above the float env
+	draft=false,				% value for draft version
+	abstract=on,                % abstract title on/off
+]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}     % adjust the language
+
+% **************************************************
+% COMMANDS FOR REUSE
+% **************************************************
+
+% Thesis
+\newcommand{\thesisTitle}{PhD title}
+%\newcommand{\thesisSubtitle}{A case study for all faculties at University of Copenhagen}
+\newcommand{\thesisName}{Author Name}
+\newcommand{\thesisSubject}{PhD Thesis}
+\newcommand{\thesisDate}{Month Year}
+\newcommand{\thesisVersion}{1. Version © Author Name, Month Year}
+
+\newcommand{\thesisGradSchool}{This thesis has been submitted to the Graduate School at Faculty of Health and Medical Sciences, University of Copenhagen}
+
+% Supervisors & Collaborators
+\newcommand{\thesisSupervisor}{Supervisor 1\\Supervisor 2\\Superviros 3\\  [0.2 cm] 
+%\textit{All:}\\ 
+%\thesisFaculty 
+%\\
+%\thesisUniversity
+}
+\newcommand{\thesisAssessment}{Opponent 1 (Chairperson)\\University, Country  \\ [0.3 cm] Opponent 2\\ University, Country \\[0.3 cm] Opponent 3\\ University, Country}
+\newcommand{\thesisCollab}{If any?}
+
+% University of Copenhagen
+\newcommand{\thesisUniversity}{\protect{University of Copenhagen}}
+\newcommand{\thesisFaculty}{Faculty of Health and Medical Sciences}
+\newcommand{\thesisDepartment}{Department of Veterinary and Animal Sciences}
+\newcommand{\thesisSection}{Section of Animal Welfare and Disease Control}
+\newcommand{\thesisCity}{Frederiksberg}
+\newcommand{\thesisAddress}{Grønnegårdsvej 8}
+\newcommand{\thesisPostal}{1870}
+\newcommand{\thesisCountry}{Denmark}
+
+% External institution: University of Sussex
+\newcommand{\thesisUniSus}{\protect{University of xxx}}
+\newcommand{\thesisUniSusDep}{Department of xx}
+
+
+% *********************************************************
+% PACKAGES
+% *********************************************************
+
+\usepackage[					% UCPH thesis style
+    figuresep=colon,        
+    sansserif=false,        
+    hangfigurecaption=false,
+    hangsection=true,       
+    hangsubsection=true,    
+    colorize=full,          
+    colortheme={\thesisTheme},  % ucph, sund, science, hum, etc.?
+    bibsys=biber,
+    bibfile=references,       % defines your .bib file
+    bibstyle=authoryear,        % refer to https://bit.ly/2YsvIJz
+]{ucphthesis}
+\hypersetup{					% setup the hyperref-package options
+	pdftitle={\thesisTitle},	% 	- title (PDF meta)
+	pdfsubject={\thesisSubject},% 	- subject (PDF meta)
+	pdfauthor={\thesisName},	% 	- author (PDF meta)
+	plainpages=false,			% 	-
+	colorlinks=false,			% 	- colorize links
+	pdfborder={0 0 0},			% 	-
+	breaklinks=true,			% 	- allow line break inside links
+	bookmarksnumbered=true,		%
+	bookmarksopen=true			%
+    }
+
+% *********************************************************
+% Cover page content
+% *********************************************************
+\subject{\vspace{4.5cm} \thesisSubject}
+\title{\thesisTitle}
+%\subtitle{\thesisSubtitle}
+\author{\thesisName}
+\date{\thesisDate \\ \vspace{3cm} { \small This thesis has been submitted to the Graduate School at Faculty of Health and Medical Sciences, University of Copenhagen. Date.\\}}
+
+
+
+% ********************************************************* 
+% THESIS CONTENT
+% *********************************************************
+\begin{document}
+
+% -------------------------- 
+% Front matter
+% --------------------------
+\pagenumbering{roman}
+\pagestyle{empty}				            % no header or footers
+\AddToShipoutPicture*{\TitleBackground}     % adding background picture
+\maketitle                                  % making the title
+\input{frontbackmatter/titlepage.tex}
+\clearpage
+
+\pagestyle{plain}
+
+% Table of Contents (could also be just before Main Matter)
+\setcounter{tocdepth}{2}		% define depth of toc
+\tableofcontents				% display table of contents
+    \clearpage
+
+%\input{frontbackmatter/quotes.tex}          % INCLUDE Quotes. Quote has been included in preface
+\input{frontbackmatter/preface.tex}         % INCLUDE Preface
+\input{frontbackmatter/summary.tex}         % INCLUDE Abstract
+\input{frontbackmatter/sammendrag.tex}      % INCLUDE Danish abstract
+\input{frontbackmatter/list_figures.tex}   % INCLUDE List of figures
+\input{frontbackmatter/list_tables.tex}   % INCLUDE List of tables
+\input{frontbackmatter/abbreviations.tex}   % INCLUDE abbreviations
+    \clearpage
+
+
+% -------------------------- 
+% Main matter
+% --------------------------
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{1}			% set page counter
+\pagestyle{maincontentstyle} 	% fancy header and footer
+
+\input{mainmatter/background.tex}       % INCLUDE background
+\input{mainmatter/purpose.tex}          % INCLUDE purpose and aim
+\input{mainmatter/introduction.tex}     % INCLUDE Introduction
+\input{mainmatter/materialsandmethods.tex} % INCLUDE M&M
+\input{mainmatter/resultsanddiscussion.tex}   % INCLUDE General Discussion
+\input{mainmatter/conclusion.tex}       % INCLUDE Conclusion and perspectives
+\input{mainmatter/researchoutput.tex}    % INCLUDE research output
+
+
+
+% -------------------------- 
+% Back matter
+% --------------------------
+\input{frontbackmatter/bibliography.tex}
+\input{frontbackmatter/scripts.tex}
+\input{frontbackmatter/databases.tex}
+\input{frontbackmatter/publications.tex}    % INCLUDE all prints
+
+% ********************************************************* 
+% END OF THESIS
+% *********************************************************
+\end{document}
