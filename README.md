@@ -1,12 +1,19 @@
 Template for a PhD thesis at UCPH written in Latex
 
-Original copyright below.
-
 IMPORTANT: 
 Make sure to use the Tex Live Version 2018(legacy). This is not the deafult version.
 
+## Instructions for overleaf
+* Create an overleaf account using the UCPH license
+* At Github: Downlad all files as a zip file (command can be found under the green code menu)
+* In overleaf: Create new project -> Upload zip files
+* Under MENU -> Change Tex Live Version to 2018(Lecacy)
+* Compile
+
 Current version is modified by Maj Beldring Henningsen, December 2022.
 This version generates a template for a PhD thesis at UCPH, Health and Medical Sciences.
+
+Original copyright and licence below.
 
 
 % **************************************************
