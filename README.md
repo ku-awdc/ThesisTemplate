@@ -1,7 +1,12 @@
-This template is modified by Maj Beldring Henningsen, December 2023, and is build upon the template described below.
-It generates a template for a PhD thesis at UCPH, Health and Medical Sciences.
+Template for a PhD thesis at UCPH written in Latex
 
-IMPORTANT: If using overleaf, make sure to use the Tex Live Version 2018(legacy).  
+Original copyright below.
+
+IMPORTANT: 
+Make sure to use the Tex Live Version 2018(legacy). This is not the deafult version.
+
+Current version is modified by Maj Beldring Henningsen, December 2022.
+This version generates a template for a PhD thesis at UCPH, Health and Medical Sciences.
 
 
 % **************************************************
